@@ -3,6 +3,14 @@
   for SJLJ on other systems, one would want to rewrite springboard() and co_create() and hack the jmb_buf stack pointer.
 */
 
+#if defined(__GNUC__)
+// For some reason fails on RISCV when build with -O1 or higher
+// All other architectures use assembly
+// Assume that this code fails on all arches, when optimized.
+// Force -O0 compilation for this translation unit
+#pragma GCC optimize ("-O0")
+#endif
+
 #define LIBCO_C
 #include "libco.h"
 #include "settings.h"
