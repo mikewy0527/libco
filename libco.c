@@ -19,6 +19,8 @@
     #include "ppc64v2.c"
   #elif defined(_ARCH_PPC) && !defined(__LITTLE_ENDIAN__)
     #include "ppc.c"
+  #elif defined(__riscv) && defined(__riscv_xlen) && __riscv_xlen == 64
+    #include "riscv64.c"
   #elif defined(_WIN32)
     #include "fiber.c"
   #else
